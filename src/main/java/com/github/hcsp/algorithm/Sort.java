@@ -15,11 +15,9 @@ public class Sort {
 
     // 排序算法1
     // 按照从小到大排序
-    public static void sort1(int[] array) {
-    }
+    public static void sort1(int[] array) {}
 
     // 排序算法2
     // 按照从小到大排序
-    public static void sort2(int[] array) {
-    }
+    public static void sort2(int[] array) {}
 }
