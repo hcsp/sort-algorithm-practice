@@ -16,20 +16,44 @@ public class Sort {
     // 排序算法1
     // 按照从小到大排序
     public static void sort1(int[] array) {
-        boolean isSorted;
-        for (int i = array.length - 1; i > 0; i--) {
-            isSorted = true;
-            for (int j = 0; j < i; j++) {
-                if (array[j + 1] <= array[j]) {
-                    swap(array, j + 1, j);
-                    isSorted = false;
-                }
-            }
-            if (isSorted) {
-                break;
+        int low = 0;
+        int high = array.length - 1;
+        int[] tmpArray = new int[array.length];
+        mergeSort(array, tmpArray, low, high);
+    }
+
+    private static void mergeSort(int[] array, int[] tmpArray, int low, int high) {
+        if (low >= high) {
+            return;
+        }
+        int mid = (low + high) >> 1;
+        mergeSort(array, tmpArray, low, mid);
+        mergeSort(array, tmpArray, mid + 1, high);
+        merge(array, tmpArray, low, mid, high);
+    }
+
+    private static void merge(int[] array, int[] tmpArray, int low, int mid, int high) {
+        int indexOfLeft = low;
+        int indexOfRight = mid + 1;
+
+        for (int i = low; i <= high; i++) {
+            if (indexOfLeft > mid) {
+                tmpArray[i] = array[indexOfRight++];
+            } else if (indexOfRight > high) {
+                tmpArray[i] = array[indexOfLeft++];
+            } else if (array[indexOfLeft] < array[indexOfRight]) {
+                tmpArray[i] = array[indexOfLeft++];
+            } else {
+                tmpArray[i] = array[indexOfRight++];
             }
         }
+
+        for (int j = low; j <= high; j++) {
+            array[j] = tmpArray[j];
+        }
+
     }
+
 
     private static void swap(int[] array, int i, int j) {
         int tmp = array[i];
@@ -40,34 +64,14 @@ public class Sort {
     // 排序算法2
     // 按照从小到大排序
     public static void sort2(int[] array) {
-        quickSort(array, 0, array.length - 1);
-    }
-
-    private static int getIndex(int[] array, int low, int high) {
-        int baseValue = array[low];
-
-        while (low < high) {
-            while (array[high] >= baseValue && low < high) {
-                high--;
+        for (int i = 1; i < array.length; i++) {
+            int j = i;
+            while (j > 0 && array[j] < array[j - 1]) {
+                swap(array, j, j - 1);
+                j--;
             }
-            array[low] = array[high];
 
-            while (array[low] <= baseValue && low < high) {
-                low++;
-            }
-            array[high] = array[low];
         }
-
-        array[low] = baseValue;
-        return low;
     }
 
-    private static void quickSort(int[] array, int low, int high) {
-        if (low < high) {
-            int index = getIndex(array, low, high);
-            quickSort(array, low, index - 1);
-            quickSort(array, index + 1, high);
-        }
-
-    }
 }
