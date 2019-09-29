@@ -6,8 +6,8 @@ public class Sort {
     public static void main(String[] args) {
         int[] array1 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
         int[] array2 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
-        bubbleSort(array1);
-        insertSort(array2);
+        sort1(array1);
+        sort2(array2);
 
 
         System.out.println(Arrays.toString(array1));
@@ -17,7 +17,7 @@ public class Sort {
     }
 
     // 冒泡排序
-    public static void bubbleSort(int[] array) {
+    public static void sort1(int[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = i + 1; j < array.length; j++) {
                 if (array[i] > array[j]) {
@@ -30,7 +30,7 @@ public class Sort {
     }
 
     // 插入排序
-    public static void insertSort(int[] array) {
+    public static void sort2(int[] array) {
         for (int i = 1; i < array.length; i++) {
             int key = array[i];
             int j = i - 1;
