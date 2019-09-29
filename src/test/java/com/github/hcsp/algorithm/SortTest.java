@@ -21,7 +21,7 @@ public class SortTest {
         Arrays.sort(copy);
 
         System.out.println("Before: " + Arrays.toString(randomArray));
-        Sort.sort1(randomArray);
+        Sort.bubbleSort(randomArray);
         System.out.println("After: " + Arrays.toString(randomArray));
         Assertions.assertArrayEquals(copy, randomArray);
     }
@@ -32,7 +32,7 @@ public class SortTest {
         Arrays.sort(copy);
 
         System.out.println("Before: " + Arrays.toString(randomArray));
-        Sort.sort1(randomArray);
+        Sort.bubbleSort(randomArray);
         System.out.println("After: " + Arrays.toString(randomArray));
         Assertions.assertArrayEquals(copy, randomArray);
     }
