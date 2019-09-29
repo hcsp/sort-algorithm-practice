@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 public class SortTest {
     int[] randomArray = new int[10];
-
     {
         Random r = new Random();
         for (int i = 0; i < 10; i++) {
