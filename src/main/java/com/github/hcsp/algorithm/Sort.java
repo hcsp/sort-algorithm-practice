@@ -13,45 +13,18 @@ public class Sort {
         System.out.println(Arrays.toString(array2));
     }
 
-    // 排序算法1
+    // 排序算法1，选择排序
     // 按照从小到大排序
     public static void sort1(int[] array) {
-        int low = 0;
-        int high = array.length - 1;
-        int[] tmpArray = new int[array.length];
-        mergeSort(array, tmpArray, low, high);
-    }
-
-    private static void mergeSort(int[] array, int[] tmpArray, int low, int high) {
-        if (low >= high) {
-            return;
-        }
-        int mid = (low + high) >> 1;
-        mergeSort(array, tmpArray, low, mid);
-        mergeSort(array, tmpArray, mid + 1, high);
-        merge(array, tmpArray, low, mid, high);
-    }
-
-    private static void merge(int[] array, int[] tmpArray, int low, int mid, int high) {
-        int indexOfLeft = low;
-        int indexOfRight = mid + 1;
-
-        for (int i = low; i <= high; i++) {
-            if (indexOfLeft > mid) {
-                tmpArray[i] = array[indexOfRight++];
-            } else if (indexOfRight > high) {
-                tmpArray[i] = array[indexOfLeft++];
-            } else if (array[indexOfLeft] < array[indexOfRight]) {
-                tmpArray[i] = array[indexOfLeft++];
-            } else {
-                tmpArray[i] = array[indexOfRight++];
+        for (int i = 0; i < array.length; i++) {
+            int min = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < array[min]) {
+                    min = j;
+                }
             }
+            swap(array, i, min);
         }
-
-        for (int j = low; j <= high; j++) {
-            array[j] = tmpArray[j];
-        }
-
     }
 
 
@@ -61,16 +34,33 @@ public class Sort {
         array[j] = tmp;
     }
 
-    // 排序算法2
+    // 排序算法2，堆排序
     // 按照从小到大排序
     public static void sort2(int[] array) {
-        for (int i = 1; i < array.length; i++) {
-            int j = i;
-            while (j > 0 && array[j] < array[j - 1]) {
-                swap(array, j, j - 1);
-                j--;
+        int maxIndex = array.length;
+        for (int k = maxIndex / 2; k >= 1; k--) {
+            sink(array, k, maxIndex);
+        }
+        while (maxIndex > 1) {
+            swap(array, 0, maxIndex - 1);
+            maxIndex--;
+            sink(array, 1, maxIndex);
+        }
+
+    }
+
+    private static void sink(int[] array, int k, int arrLength) {
+        while (2 * k <= arrLength) {
+            int childNodeIndex = 2 * k;
+            if (childNodeIndex < arrLength && array[childNodeIndex - 1] < array[childNodeIndex]) {
+                childNodeIndex++;
             }
 
+            if (array[k - 1] >= array[childNodeIndex - 1]) {
+                break;
+            }
+            swap(array, k - 1, childNodeIndex - 1);
+            k = childNodeIndex;
         }
     }
 
