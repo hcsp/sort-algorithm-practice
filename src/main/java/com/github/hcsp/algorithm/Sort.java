@@ -14,16 +14,16 @@ public class Sort {
     }
 
     private static void swap(int[] array, int i, int j) {
+        if (i == j) {
+            return;
+        }
         array[i] = array[i] ^ array[j];
         array[j] = array[i] ^ array[j];
         array[i] = array[i] ^ array[j];
     }
 
     private static boolean isTheArrayValid(int[] array) {
-        if (array == null || array.length < 2) {
-            return true;
-        }
-        return false;
+        return array == null || array.length < 2;
     }
 
     // 排序算法1
