@@ -6,11 +6,16 @@ public class Sort {
     public static void main(String[] args) {
         int[] array1 = new int[] {4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
         int[] array2 = new int[] {4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
+        int[] array3 = new int[] {4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
         bubbleSort(array1);
         System.out.println(Arrays.toString(array1));
 
         quickSort(array2);
         System.out.println("quick sort="+Arrays.toString(array2));
+
+        System.out.println("merge sort origin="+ Arrays.toString(array3));
+        sort2(array3);
+        System.out.println("merge sort="+Arrays.toString(array3));
     }
 
     // 排序算法1
@@ -22,7 +27,7 @@ public class Sort {
     // 排序算法2
     // 按照从小到大排序
     public static void sort2(int[] array) {
-        quickSort(array);
+        mergeSort(array);
     }
 
     public static void bubbleSort(int[] array){
@@ -53,7 +58,7 @@ public class Sort {
 
     //思路参考：https://www.bilibili.com/video/av39519566?from=search&seid=12782338700587782376
     public static void quickSort(int[] array, int low, int high){
-        if ( low>high){
+        if ( low > high ){
             return;
         }
 
@@ -80,6 +85,47 @@ public class Sort {
         quickSort(array, low, i-1);
         quickSort(array, i+1, high);
 
+
+    }
+
+    public static void mergeSort(int[] array){
+        int[] tmpArray = new int[array.length];
+        mergeSort(array, tmpArray, 0, array.length-1);
+    }
+    public static void mergeSort(int[] array, int[] tmpArray, int low, int high){
+        if (low < high){
+            int mid = (high+low)/2;
+            mergeSort(array, tmpArray, low, mid);
+            mergeSort(array, tmpArray, mid+1, high);
+            merge(array, tmpArray, low, mid, high);
+        }
+    }
+    public static void merge(int[] array, int[] tmpArray, int low, int mid, int high){
+        int tmpPos = low;
+        int leftPos = low;
+        int rightPos = mid+1; //右侧区间的起点坐标
+        // 小的放前面，大的放后面
+        while (leftPos<=mid && rightPos<=high){
+            if (array[leftPos] < array[rightPos]){
+                tmpArray[tmpPos++] = array[leftPos++];
+            } else {
+                tmpArray[tmpPos++] = array[rightPos++];
+            }
+        }
+        //将剩余没有移动的元素填入临时数组
+        while (leftPos <= mid){
+            tmpArray[tmpPos++] = array[leftPos++];
+        }
+
+        //将剩余没有移动的元素填入临时数组
+        while (rightPos <= high){
+            tmpArray[tmpPos++] = array[rightPos++];
+        }
+
+        //将修改后的值写入原来的数组
+        if (high + 1 - low >= 0){
+            System.arraycopy(tmpArray, low, array, low, high + 1 - low);
+        }
 
     }
 
