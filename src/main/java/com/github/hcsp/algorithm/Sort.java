@@ -21,6 +21,11 @@ public class Sort {
         System.out.println("heap sort origin="+ Arrays.toString(array_heap));
         heapSort(array_heap);
         System.out.println("heap sort="+Arrays.toString(array_heap));
+
+        int[] array_inserted = new int[] {4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
+        System.out.println("insert sort origin="+ Arrays.toString(array_inserted));
+        insertedSort(array_inserted);
+        System.out.println("insert sort="+Arrays.toString(array_inserted));
     }
 
     // 排序算法1
@@ -32,7 +37,7 @@ public class Sort {
     // 排序算法2
     // 按照从小到大排序
     public static void sort2(int[] array) {
-        heapSort(array);
+        insertedSort(array);
     }
 
     public static void bubbleSort(int[] array){
@@ -176,6 +181,19 @@ public class Sort {
         if (max != i){
             array_swap(tree, max, i);
             heapify(tree, max, n);
+        }
+    }
+
+    public static void insertedSort(int[] array){
+        int j;
+        for (int i=1; i<array.length; i++){
+            if (array[i] < array[i-1]){
+                int tmp = array[i];
+                for (j=i-1; j>=0 && array[j]>tmp; j--){
+                    array[j+1] = array[j];
+                }
+                array[j+1] = tmp;
+            }
         }
     }
 
