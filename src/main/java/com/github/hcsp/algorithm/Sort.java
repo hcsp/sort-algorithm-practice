@@ -26,6 +26,11 @@ public class Sort {
         System.out.println("insert sort origin="+ Arrays.toString(array_inserted));
         insertedSort(array_inserted);
         System.out.println("insert sort="+Arrays.toString(array_inserted));
+
+        int[] array_selection = new int[] {4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
+        System.out.println("insert sort origin="+ Arrays.toString(array_selection));
+        selectionSort(array_selection);
+        System.out.println("insert sort="+Arrays.toString(array_selection));
     }
 
     // 排序算法1
@@ -37,19 +42,14 @@ public class Sort {
     // 排序算法2
     // 按照从小到大排序
     public static void sort2(int[] array) {
-        insertedSort(array);
+        selectionSort(array);
     }
 
     public static void bubbleSort(int[] array){
         for (int i=0; i< array.length; i++){
             for (int j=i+1; j<array.length; j++){
-                int a = array[i];
-                int b = array[j];
-                int t = 0;
-                if (a>b){
-                    t = array[i];
-                    array[i] = array[j];
-                    array[j] = t;
+                if (array[i]>array[j]){
+                    array_swap(array, i, j);
                 }
             }
         }
@@ -140,9 +140,19 @@ public class Sort {
         }
 
     }
-
+    //选出最小的，放前面，然后对剩余序列二次排序
     public static void selectionSort(int[] array){
-
+        for (int i=0; i<array.length; i++){
+            int minIndex = i;
+            for (int j=i+1; j<array.length; j++){
+                if (array[minIndex] > array[j]){
+                    minIndex = j;
+                }
+            }
+            if (minIndex!=i){
+                array_swap(array, minIndex, i);
+            }
+        }
     }
 
     //参考思路：https://www.bilibili.com/video/av47196993?from=search&seid=9587625421060080139
