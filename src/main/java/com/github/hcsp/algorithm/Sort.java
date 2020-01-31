@@ -16,6 +16,11 @@ public class Sort {
         System.out.println("merge sort origin="+ Arrays.toString(array3));
         sort2(array3);
         System.out.println("merge sort="+Arrays.toString(array3));
+
+        int[] array_heap = new int[] {4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
+        System.out.println("heap sort origin="+ Arrays.toString(array_heap));
+        heapSort(array_heap);
+        System.out.println("heap sort="+Arrays.toString(array_heap));
     }
 
     // 排序算法1
@@ -27,7 +32,7 @@ public class Sort {
     // 排序算法2
     // 按照从小到大排序
     public static void sort2(int[] array) {
-        mergeSort(array);
+        heapSort(array);
     }
 
     public static void bubbleSort(int[] array){
@@ -88,6 +93,7 @@ public class Sort {
 
     }
 
+    //参考思路：https://www.bilibili.com/video/av39519566?from=search&seid=12782338700587782376
     public static void mergeSort(int[] array){
         int[] tmpArray = new int[array.length];
         mergeSort(array, tmpArray, 0, array.length-1);
@@ -100,6 +106,7 @@ public class Sort {
             merge(array, tmpArray, low, mid, high);
         }
     }
+
     public static void merge(int[] array, int[] tmpArray, int low, int mid, int high){
         int tmpPos = low;
         int leftPos = low;
@@ -127,6 +134,49 @@ public class Sort {
             System.arraycopy(tmpArray, low, array, low, high + 1 - low);
         }
 
+    }
+
+    public static void selectionSort(int[] array){
+
+    }
+
+    //参考思路：https://www.bilibili.com/video/av47196993?from=search&seid=9587625421060080139
+    public static void heapSort(int[] tree){
+        for (int i=tree.length-1; i>=0; i--){
+            build_heap(tree, tree.length-i);
+            array_swap(tree, 0, i);
+        }
+    }
+
+    public static void build_heap(int[] tree, int n){
+        //heapify会对n及其子节点进行排序，所以从last_node开始，遍历父节点所在的堆即可，heapify会完成last_node同级节点的排序
+        int last_node = n-1;
+        int parent = (last_node-1)/2;
+
+        for (int i = parent; i>=0; i--){
+            heapify(tree, i, n);
+        }
+    }
+
+    public static void heapify(int[] tree, int i, int n){
+        if (i>=n){
+            return;
+        }
+
+        int max = i;
+        int left = (2*i+1);
+        int right = (2*i+2);
+
+        if ( left<n && tree[max] < tree[left] ){
+            max = left;
+        }
+        if ( right<n && tree[max] < tree[right] ){
+            max = right;
+        }
+        if (max != i){
+            array_swap(tree, max, i);
+            heapify(tree, max, n);
+        }
     }
 
     public static void array_swap(int[] array, int i, int j){
