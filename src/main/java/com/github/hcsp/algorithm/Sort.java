@@ -15,25 +15,9 @@ public class Sort {
 
     // 排序算法1
     // 按照从小到大排序
-    public static void sort1(int[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = 0; j < array.length - i - 1; j++) {
-                if (array[j] > array[j+1]) {
-                    swap(array, j, j+1);
-                }
-            }
-        }
-    }
+    public static void sort1(int[] array) {}
 
     // 排序算法2
     // 按照从小到大排序
-    public static void sort2(int[] array) {
-        Arrays.sort(array);
-    }
-
-    private static void swap(int[] array, int i, int j) {
-        int tmp = array[j];
-        array[j] = array[i];
-        array[i] = tmp;
-    }
+    public static void sort2(int[] array) {}
 }
