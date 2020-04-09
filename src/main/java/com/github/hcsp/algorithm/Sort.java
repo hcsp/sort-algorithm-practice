@@ -37,8 +37,9 @@ public class Sort {
     }
 
     public static void quickSort(int[] array, int left, int right) {
-        if (left >= right)
+        if (left >= right) {
             return;
+        }
         int temp;
         int l = left;
         int r = right;
