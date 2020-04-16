@@ -192,8 +192,7 @@ public class Sort {
         if (li > len) {
             return;
         }      // 左子节点索引超出计算范围，直接返回。
-        if (ri <= len && array[ri] > array[li]) // 先判断左右子节点，哪个较大。
-        {
+        if (ri <= len && array[ri] > array[li]) { // 先判断左右子节点，哪个较大。
             cMax = ri;
         }
         if (array[cMax] > array[index]) {
