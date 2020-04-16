@@ -75,7 +75,7 @@ public class Sort {
             array[j] = array[i];
             array[i] = temp;
         }
-        array[low] = array[i];//这里的arr[i]一定是停小于p的，经过i、j交换后i处的值一定是小于p的(j先走)
+        array[low] = array[i]; //这里的arr[i]一定是停小于p的，经过i、j交换后i处的值一定是小于p的(j先走)
         array[i] = p;
         quickSort(array, low, j - 1);  //对左边快排
         quickSort(array, j + 1, high); //对右边快排
@@ -134,7 +134,9 @@ public class Sort {
         for (int i = 0; i < N - 1; i++) {
             int min = i;
             for (int j = i + 1; j < N; j++) {
-                if (less(array[j], array[min])) min = j;
+                if (less(array[j], array[min])) {
+                    min = j;
+                }
             }
             swap(array, i, min);
         }
@@ -156,8 +158,9 @@ public class Sort {
          */
         int len = array.length - 1;
         int beginIndex = (array.length >> 1) - 1;
-        for (int i = beginIndex; i >= 0; i--)
+        for (int i = beginIndex; i >= 0; i--) {
             minHeapify(array, i, len);
+        }
         /*
          * 第二步：对堆化数据排序
          * 每次都是移出最顶层的根节点A[0]，与最尾部节点位置调换，同时遍历长度 - 1。
@@ -186,9 +189,13 @@ public class Sort {
         int li = (index << 1) + 1; // 左子节点索引
         int ri = li + 1;           // 右子节点索引
         int cMax = li;             // 子节点值最大索引，默认左子节点。
-        if (li > len) return;      // 左子节点索引超出计算范围，直接返回。
+        if (li > len) {
+            return;
+        }      // 左子节点索引超出计算范围，直接返回。
         if (ri <= len && array[ri] > array[li]) // 先判断左右子节点，哪个较大。
+        {
             cMax = ri;
+        }
         if (array[cMax] > array[index]) {
             swap(array, cMax, index);      // 如果父节点被子节点调换，
             minHeapify(array, cMax, len);  // 则需要继续判断换下后的父节点是否符合堆的特性。
