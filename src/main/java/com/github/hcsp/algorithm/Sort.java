@@ -13,11 +13,29 @@ public class Sort {
         System.out.println(Arrays.toString(array2));
     }
 
-    // 排序算法1
+    // 排序算法1：冒泡排序
     // 按照从小到大排序
-    public static void sort1(int[] array) {}
+    public static void sort1(int[] array) {
+        int length = array.length;
+        for (int i = length - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j, j + 1);
+                }
+            }
+        }
+    }
 
-    // 排序算法2
+    private static void swap(int[] x, int a, int b) {
+        int t = x[a];
+        x[a] = x[b];
+        x[b] = t;
+    }
+
+    // 排序算法2：快速排序
     // 按照从小到大排序
-    public static void sort2(int[] array) {}
+    public static void sort2(int[] array) {
+
+
+    }
 }
