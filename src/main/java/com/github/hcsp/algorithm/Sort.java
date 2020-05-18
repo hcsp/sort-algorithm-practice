@@ -116,13 +116,9 @@ public class Sort {
             // 第一段数组元素用光，复制第二段元素到临时数组
             if (part1Start > mid) {
                 arr[k++] = array[part2Start++];
-            }
-            // 第二段数组元素用光，复制第一段元素到临时数组
-            else if (part2Start > end) {
+            } else if (part2Start > end) {  // 第二段数组元素用光，复制第一段元素到临时数组
                 arr[k++] = array[part1Start++];
-            }
-            // 比较两个数组最前面的元素，将较小的复制到临时数组
-            else if (array[part1Start] < array[part2Start]) {
+            } else if (array[part1Start] < array[part2Start]) {  // 比较两个数组最前面的元素，将较小的复制到临时数组
                 arr[k++] = array[part1Start++];
             } else {
                 arr[k++] = array[part2Start++];
