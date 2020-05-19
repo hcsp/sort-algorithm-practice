@@ -1,5 +1,6 @@
 package com.github.hcsp.algorithm;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sort {
@@ -10,6 +11,8 @@ public class Sort {
         int[] array4 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
         int[] array5 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
         int[] array6 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
+        int[] array7 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
+        int[] array8 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
 
         sort1(array1);
         sort2(array2);
@@ -17,6 +20,8 @@ public class Sort {
         sort4(array4);
         sort5(array5);
         sort6(array6);
+        sort6(array7);
+        sort6(array8);
 
         System.out.println(Arrays.toString(array1));
         System.out.println(Arrays.toString(array2));
@@ -24,6 +29,8 @@ public class Sort {
         System.out.println(Arrays.toString(array4));
         System.out.println(Arrays.toString(array5));
         System.out.println(Arrays.toString(array6));
+        System.out.println(Arrays.toString(array7));
+        System.out.println(Arrays.toString(array8));
     }
 
     // 1.冒泡排序
@@ -217,6 +224,87 @@ public class Sort {
             swap(array, index, (index - 1) / 2);
             index = (index - 1) / 2;
         }
+    }
+
+    // 7.希尔排序
+    // 按照从小到大排序
+    public static void sort7(int[] array) {
+        shellSort(array);
+    }
+
+    private static void shellSort(int[] array) {
+        int delta = array.length;
+        int len = array.length;
+        while (delta > 0) {
+            // 确定增量
+            delta /= 2;
+            // 分组
+            for (int i = 0; i < delta; i++) {
+                // 对其中一组进行插入排序
+                for (int j = i + delta; j < len; j += delta) {
+                    int temp = array[j];
+                    int k = j - delta;
+                    while (array[k] > temp) {
+                        array[k + 1] = array[k];
+                        k--;
+                    }
+                    array[k + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // 8.基数排序
+    // 按照从小到大排序
+    public static void sort8(int[] array) {
+        radixSort(array);
+    }
+
+    private static void radixSort(int[] array) {
+        int len = array.length;
+
+        // 桶列表
+        ArrayList<ArrayList<Integer>> bucketList = new ArrayList<>();
+
+        // 10个桶，分别对应余数0-9
+        for (int i = 0; i < 10; i++) {
+            bucketList.add(new ArrayList<>());
+        }
+
+        // 最大值
+        int max = array[0];
+        for (int i = 1; i < len; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+
+        // 轮次
+        int time = 1;
+
+        while (true) {
+            // 判断是否排完
+            int dd = (int) Math.pow(10, time - 1);
+            if (dd > max) {
+                break;
+            }
+
+            // 数组元素一一入桶
+            for (int i = 0; i < len; i++) {
+                int remainder = array[i] / dd % 10;
+                bucketList.get(remainder).add(array[i]);
+            }
+
+            // 顺序取出桶中元素放回数组
+            int n = 0;
+            for (int i = 0; i < 10; i++) {
+                int size = bucketList.get(i).size();
+                for (int j = 0; j < size; j++) {
+                    array[n++] = bucketList.get(i).get(j);
+                }
+            }
+        }
+
     }
 
 }
