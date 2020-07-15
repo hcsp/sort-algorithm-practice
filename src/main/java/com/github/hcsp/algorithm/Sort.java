@@ -60,34 +60,34 @@ public class Sort {
     }
 
     private static int partition(int[] array, int left, int right) {
-        int temp = array[left];
-        while (left < right) {
+        int temp = array[left], left1 = left, right1 = right;
+        while (left1 < right1) {
             // 先把基准与(从后向前直到left的后一个数)依次进行比较,
             // 找到比基准小的数
-            while (temp <= array[right] && right > left) {
-                --right;
+            while (temp <= array[right1] && right1 > left1) {
+                --right1;
             }
             //如果找到比基准小的数就填到left坑里
-            if (temp > array[right]) {
-                array[left] = array[right];
-                ++left;
+            if (temp > array[right1]) {
+                array[left1] = array[right1];
+                ++left1;
             }
             // 先把基准与(从前向后直到right)依次进行比较,
             // 找到比基准大的数
-            while (temp >= array[left] && left < right) {
-                ++left;
+            while (temp >= array[left1] && left1 < right1) {
+                ++left1;
             }
             //如果找到比基准大的数就填坑到上一个right里
-            if (temp < array[left]) {
-                array[right] = array[left];
-                --right;
+            if (temp < array[left1]) {
+                array[right1] = array[left1];
+                --right1;
             }
         }
         //循环结束，有两种可能就是left >= right;
         // 第一种 left > right，这个可能非常少见，一般出现在队列中有跟基准同样的数字，它的左边紧挨着一个比它大的数字的时候
         //另一种可能就是没找到，结果left = right 并且下一个If条件进不去，
         // 将array[left]作为下一个递归的right或者left返回
-        array[left] = temp;
-        return left;
+        array[left1] = temp;
+        return left1;
     }
 }
