@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Sort {
     public static void main(String[] args) {
-        int[] array1 = new int[] {4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
-        int[] array2 = new int[] {4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
+        int[] array1 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
+        int[] array2 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
         sort1(array1);
         sort2(array2);
 
@@ -20,7 +20,7 @@ public class Sort {
             // 2.控制每轮比较几次
             for (int j = 0; j < array.length - 1 - i; j++) {
                 if (array[j] > array[j + 1]) {
-                    switchArray(array,j,j+1);
+                    switchArray(array, j, j + 1);
                 }
             }
         }
@@ -31,9 +31,9 @@ public class Sort {
     public static void sort2(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             // 2.控制每轮比较几次
-            for (int j = i+1; j < array.length; j++) {
+            for (int j = i + 1; j < array.length; j++) {
                 if (array[i] > array[j]) {
-                    switchArray(array,i,j);
+                    switchArray(array, i, j);
                 }
             }
         }
@@ -42,6 +42,6 @@ public class Sort {
     public static void switchArray(int[] array, int i, int j) {
         int temp = array[i];
         array[i] = array[j];
-        array[j]=temp;
+        array[j] = temp;
     }
 }
