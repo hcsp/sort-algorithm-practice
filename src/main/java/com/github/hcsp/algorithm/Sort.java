@@ -82,7 +82,7 @@ public class Sort {
         int index;
         int value;
 
-        public Pivot(int index, int value) {
+        private Pivot(int index, int value) {
             this.index = index;
             this.value = value;
         }
