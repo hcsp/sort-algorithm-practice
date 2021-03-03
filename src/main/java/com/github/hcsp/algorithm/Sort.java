@@ -73,12 +73,12 @@ public class Sort {
         }
     }
 
+    // 插入排序
     public static void sort3(int[] array) {
-        if (array.length == 0 || array.length == 1) {
-        } else {
+        if (array.length != 0 && array.length != 1) {
             int key, j;
             int arrayLength = array.length;
-            for (int i = 1; i < array.length - 1; i++) {
+            for (int i = 1; i < arrayLength - 1; i++) {
                 key = array[i];
                 j = i - 1;
                 while (j >= 0 && array[j] > key) {
