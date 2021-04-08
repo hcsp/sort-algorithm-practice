@@ -26,13 +26,12 @@ public class Sort {
                 }
             }
             // 如果一次交互都没有发生，选择排序时间复杂度O(n^2)
-            if (flag) {
+            if (!flag) {
                 break;
             } else {
                 flag = false; //重制flag，进行下次交换
             }
         }
-
     }
 
     // 排序算法2-选择排序 时间复杂度O(n^2) 从小到大
