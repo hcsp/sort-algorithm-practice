@@ -15,7 +15,7 @@ public class Sort {
 
     // 排序算法1-冒泡排序 时间复杂度O(n^2) 从小到大
     public static void sort1(int[] array) {
-        boolean flag = false;//优化---是否进行过交互
+        boolean flag = false; //优化---是否进行过交互
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = 0; j < array.length - 1 - i; j++) {
                 if (array[j] > array[j + 1]) {
@@ -26,10 +26,10 @@ public class Sort {
                 }
             }
             // 如果一次交互都没有发生，选择排序时间复杂度O(n^2)
-            if (flag == false) {
+            if (flag) {
                 break;
             } else {
-                flag = false;//重制flag，进行下次交换
+                flag = false; //重制flag，进行下次交换
             }
         }
 
