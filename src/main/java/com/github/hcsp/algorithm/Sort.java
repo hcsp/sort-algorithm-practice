@@ -6,12 +6,11 @@ public class Sort {
     public static void main(String[] args) {
         int[] array1 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
         int[] array2 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
-//        int[] array2 = new int[]{8, 4, 1, 7, 4};
 
         sort1(array1);
         sort2(array2);
 
-        System.out.println(Arrays.toString(array1));
+//        System.out.println(Arrays.toString(array1));
         System.out.println(Arrays.toString(array2));
     }
 
@@ -24,7 +23,19 @@ public class Sort {
     // 排序算法2
     // 按照从小到大排序
     public static void sort2(int[] array) {
-        mergeSort2(array);
+        insertionSort(array);
+    }
+
+    public static void insertionSort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (array[j] > array[i]) {
+                    swapValueInArray(array, j, i);
+                }
+
+            }
+
+        }
     }
 
     // 归并排序 - 迭代法
