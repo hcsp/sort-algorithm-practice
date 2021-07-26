@@ -10,20 +10,33 @@ public class Sort {
         sort1(array1);
         sort2(array2);
 
-//        System.out.println(Arrays.toString(array1));
+        System.out.println(Arrays.toString(array1));
         System.out.println(Arrays.toString(array2));
     }
 
     // 归并排序 - 递归法
     // 按照从小到大排序
     public static void sort1(int[] array) {
-        mergeSort(array);
+        selectionSort(array);
     }
 
     // 排序算法2
     // 按照从小到大排序
     public static void sort2(int[] array) {
         insertionSort(array);
+    }
+
+    public static void selectionSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[minIndex] > array[j]) {
+                    minIndex = j;
+                }
+            }
+
+            swapValueInArray(array, i, minIndex);
+        }
     }
 
     public static void insertionSort(int[] array) {
