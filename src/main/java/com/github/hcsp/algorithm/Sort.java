@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Sort {
     public static void main(String[] args) {
-        int[] array1 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
-        int[] array2 = new int[]{4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
+        int[] array1 = new int[] {4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
+        int[] array2 = new int[] {4, 8, 1, 7, 4, 0, 5, 8, 7, 5, 9, 6, 4, 0};
         sort1(array1);
         sort2(array2);
 
@@ -13,33 +13,11 @@ public class Sort {
         System.out.println(Arrays.toString(array2));
     }
 
-    // 排序算法1 冒泡排序
+    // 排序算法1
     // 按照从小到大排序
-    public static void sort1(int[] array) {
-        for (int i = 1; i < array.length; i++) {
-            for (int j = 0; j < array.length - i; j++) {
-                if (array[j] > array[j + 1]) {
-                    int tmp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = tmp;
-                }
-            }
-        }
-    }
+    public static void sort1(int[] array) {}
 
-    // 排序算法2 插入排序
+    // 排序算法2
     // 按照从小到大排序
-    public static void sort2(int[] array) {
-        for (int i = 1; i < array.length; i++) {
-            int tmp = array[i];
-            int j = i;
-            while (j > 0 && array[j - 1] > tmp) {
-                array[j] = array[j - 1];
-                j--;
-            }
-            if (j != i) {
-                array[j] = tmp;
-            }
-        }
-    }
+    public static void sort2(int[] array) {}
 }
